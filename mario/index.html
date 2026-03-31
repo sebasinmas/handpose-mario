@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NES + Teachable Machine</title>
+</head>
+<body>
+
+  <div id="container" style="
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  ">
+
+    <canvas 
+      id="screen" 
+      width="256" 
+      height="240"
+      style="
+        width: 576px;
+        height: 540px;
+        border: 2px solid black;
+        image-rendering: pixelated;
+      ">
+    </canvas>
+
+    <div id="sidePanel" style="
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    ">
+      
+      <div id="webcam-container"></div>
+
+      <div id="predictions" style="
+        font-family: monospace;
+        background: black;
+        color: lime;
+        padding: 10px;
+        width: 220px;
+      "></div>
+
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
