@@ -175,26 +175,45 @@ updateDebugMode();
 updateDebugPanel();
 
 let model, webcam;
+let isPredicting = false;
 
-async function initML() {
-  // const modelURL = "model/modeloNahuel/model.json";
-  // const metadataURL = "model/modeloNahuel/metadata.json";
-  const modelURL = "model/modeloSeba/model.json";
-  const metadataURL = "model/modeloSeba/metadata.json";
+async function loadModel(modelName) {
+  modelStatusEl.textContent = "Cargando modelo...";
+  modelStatusEl.dataset.state = "warning";
+  const modelURL = `model/${modelName}/model.json`;
+  const metadataURL = `model/${modelName}/metadata.json`;
 
   model = await tmImage.load(modelURL, metadataURL);
   validateModelLabels(model);
+}
 
-  webcam = new tmImage.Webcam(200, 200, true);
-  await webcam.setup();
-  await webcam.play();
+document.getElementById("model-select").addEventListener("change", async (e) => {
+  await loadModel(e.target.value);
+});
 
-  document.getElementById("webcam-container").appendChild(webcam.canvas);
+async function initML() {
+  const initialModel = document.getElementById("model-select").value;
+  await loadModel(initialModel);
 
-  loopML();
+  const webcamCanvasContainer = document.getElementById("webcam-container");
+  if (!webcamCanvasContainer.hasChildNodes()) {
+    webcam = new tmImage.Webcam(200, 200, true);
+    await webcam.setup();
+    await webcam.play();
+    webcamCanvasContainer.appendChild(webcam.canvas);
+  }
+
+  if (!isPredicting) {
+    isPredicting = true;
+    loopML();
+  }
 }
 
 async function loopML() {
+  if (!webcam || !model) {
+    if (isPredicting) requestAnimationFrame(loopML);
+    return;
+  }
   webcam.update();
 
   const predictions = await model.predict(webcam.canvas);
