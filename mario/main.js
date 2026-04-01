@@ -177,9 +177,30 @@ updateDebugPanel();
 let model, webcam;
 let isPredicting = false;
 
+const CONTROLS_MAP = {
+  modeloSeba: `
+    <li>👈: Izquierda</li>
+    <li>🖐️: Derecha</li>
+    <li>☝️: Saltar</li>
+    <li>✊: Abajo</li>
+  `,
+  modeloNahuel: `
+    <li>✌️: Izquierda</li>
+    <li>☝️: Derecha</li>
+    <li>🤚: Saltar</li>
+    <li>✊: Abajo</li>
+  `
+};
+
 async function loadModel(modelName) {
   modelStatusEl.textContent = "Cargando modelo...";
   modelStatusEl.dataset.state = "warning";
+  
+  const list = document.getElementById("controls-list");
+  if (list && CONTROLS_MAP[modelName]) {
+    list.innerHTML = CONTROLS_MAP[modelName];
+  }
+
   const modelURL = `model/${modelName}/model.json`;
   const metadataURL = `model/${modelName}/metadata.json`;
 
