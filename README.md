@@ -52,11 +52,19 @@ Condiciones importantes para que funcionen bien:
 - evitar fondos muy cargados
 - intentar repetir los gestos con una distancia parecida a la usada en el entrenamiento
 
-Mapa de controles:
+Mapa de controles (Modelo Nahuel):
 
 - `Izquierda` `✌️`: mueve a Mario hacia la izquierda
 - `Derecha` `☝️`: mueve a Mario hacia la derecha
 - `Arriba` `🤚`: hace saltar a Mario
+- `Abajo` `✊`: hace que Mario se agache
+- `Nada`: sin acción, suelta los controles del modelo
+
+Mapa de controles (Modelo Seba):
+
+- `Izquierda` `👈`: mueve a Mario hacia la izquierda
+- `Derecha` `🖐️`: mueve a Mario hacia la derecha
+- `Arriba (Saltar)` `☝️`: hace saltar a Mario
 - `Abajo` `✊`: hace que Mario se agache
 - `Nada`: sin acción, suelta los controles del modelo
 
