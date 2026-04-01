@@ -1,21 +1,29 @@
 # Handpose Mario
 
+![Demo](assets/Grabación%202026-03-31%20215720.gif)
+
 Proyecto de control gestual para `Super Mario Bros. 3` usando webcam y un modelo entrenado con gestos de mano.
 
 La versión activa del juego está en [`mario/`](/home/chop/Documents/handpose-mario/mario) y corre sobre un emulador NES en el navegador.
 
 ## Requisitos
 
-- `python3` para levantar un servidor estático
+- `python3` (para módulo http.server) o `Node.js` (para npx serve)
 - Un navegador moderno
 - Cámara web habilitada
 
 ## Cómo levantar el proyecto
 
-Desde la raíz del proyecto, ejecutar:
+Desde la raíz del proyecto, puedes ejecutar usando Python:
 
 ```bash
 python3 -m http.server 8000
+```
+
+O bien, si usas Node.js, simplemente puedes correr:
+
+```bash
+npx serve
 ```
 
 Luego abrir en el navegador:

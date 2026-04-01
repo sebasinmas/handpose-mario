@@ -15,6 +15,11 @@ const LABEL_ALIASES = {
   derecha: "right",
   nothing: "nothing",
   nada: "nothing",
+  Arriba: "up",
+  Abajo: "down",
+  Izquierda: "left",
+  Derecha: "right",
+  Nada: "nothing",
 };
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -172,8 +177,10 @@ updateDebugPanel();
 let model, webcam;
 
 async function initML() {
-  const modelURL = "model/model.json";
-  const metadataURL = "model/metadata.json";
+  // const modelURL = "model/modeloNahuel/model.json";
+  // const metadataURL = "model/modeloNahuel/metadata.json";
+  const modelURL = "model/modeloSeba/model.json";
+  const metadataURL = "model/modeloSeba/metadata.json";
 
   model = await tmImage.load(modelURL, metadataURL);
   validateModelLabels(model);
